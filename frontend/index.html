@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Irrigation System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="script" href="script.js">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="smart irrigation logo.webp" alt="Smart irrigation System">
+                <h1>Smart Irrigation</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Smart Irrigation for a Greener Future</h2>
+                <p>Save water, save money, and grow healthier plants with our AI-powered irrigation system.</p>
+                <a href="#dashboard" class="btn">View Dashboard</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-tint"></i>
+                    <h3>Water Conservation</h3>
+                    <p>Reduce water usage by up to 50% with precise soil moisture monitoring.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-sun"></i>
+                    <h3>Weather Adaptive</h3>
+                    <p>Automatically adjusts based on weather forecasts and local conditions.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Remote Control</h3>
+                    <p>Monitor and control your irrigation system from anywhere using our app.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Analytics</h3>
+                    <p>Get insights into your water usage and plant health over time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2>System Dashboard</h2>
+            <div class="dashboard-container">
+                <div class="sensor-data">
+                    <div class="data-card">
+                        <h3>Soil Moisture</h3>
+                        <div class="gauge" id="moisture-gauge"></div>
+                        <p class="value" id="moisture-value">--%</p>
+                    </div>
+                    <div class="data-card">
+                        <h3>Temperature</h3>
+                        <div class="gauge" id="temp-gauge"></div>
+                        <p class="value" id="temp-value">--°C</p>
+                    </div>
+                    <div class="data-card">
+                        <h3>Humidity</h3>
+                        <div class="gauge" id="humidity-gauge"></div>
+                        <p class="value" id="humidity-value">--%</p>
+                    </div>
+                </div>
+                
+                <div class="controls">
+                    <h3>System Controls</h3>
+                    <div class="control-group">
+                        <label for="system-mode">System Mode:</label>
+                        <select id="system-mode">
+                            <option value="auto">Automatic</option>
+                            <option value="manual">Manual</option>
+                            <option value="off">Off</option>
+                        </select>
+                    </div>
+                    
+                    <div class="control-group" id="manual-controls">
+                        <button id="water-now" class="btn">Water Now</button>
+                        <div class="duration-control">
+                            <label for="water-duration">Duration (seconds):</label>
+                            <input type="number" id="water-duration" min="1" max="300" value="30">
+                        </div>
+                    </div>
+
+                    <div class="scheduling">
+                        <h3>Irrigation Schedule</h3>
+                        <div class="schedule-controls">
+                            <button id="add-schedule" class="btn">Add Schedule</button>
+                        </div>
+                        <div class="schedule-list" id="schedule-list">
+                            <!-- Schedule items will be added here dynamically -->
+                        </div>
+
+                        <div class="alerts">
+                            <h3>Alerts & Notifications</h3>
+                            <div class="alert-list" id="alert-list">
+                                <!-- Alerts will be added here dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="zones">
+                            <h3>Zone Management</h3>
+                            <div class="zone-controls">
+                                <button id="add-zone" class="btn">Add Zone</button>
+                            </div>
+                            <div class="zone-list" id="zone-list">
+                                <!-- Zone items will be added here dynamically -->
+                            </div>
+                        </div>
+
+                        <div id="schedule-modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h3>Add Irrigation Schedule</h3>
+                                <form id="schedule-form">
+                                    <div class="form-group">
+                                        <label for="schedule-zone">Zone:</label>
+                                        <select id="schedule-zone" required>
+                                            <!-- Zones will be populated dynamically -->
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="schedule-days">Days:</label>
+                                        <div class="day-selector">
+                                            <label><input type="checkbox" name="day" value="0"> Sun</label>
+                                            <label><input type="checkbox" name="day" value="1"> Mon</label>
+                                            <label><input type="checkbox" name="day" value="2"> Tue</label>
+                                            <label><input type="checkbox" name="day" value="3"> Wed</label>
+                                            <label><input type="checkbox" name="day" value="4"> Thu</label>
+                                            <label><input type="checkbox" name="day" value="5"> Fri</label>
+                                            <label><input type="checkbox" name="day" value="6"> Sat</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="schedule-time">Time:</label>
+                                        <input type="time" id="schedule-time" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="schedule-duration">Duration (minutes):</label>
+                                        <input type="number" id="schedule-duration" min="1" max="120" value="15" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="schedule-enabled">Enabled:</label>
+                                        <input type="checkbox" id="schedule-enabled" checked>
+                                    </div>
+                                    <button type="submit" class="btn">Save Schedule</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div id="zone-modal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <h3>Add Irrigation Zone</h3>
+                                <form id="zone-form">
+                                    <div class="form-group">
+                                        <label for="zone-name">Zone Name:</label>
+                                        <input type="text" id="zone-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zone-description">Description:</label>
+                                        <textarea id="zone-description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zone-flow-rate">Flow Rate (L/min):</label>
+                                        <input type="number" id="zone-flow-rate" min="0.1" step="0.1" value="2.0" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zone-area">Area (m²):</label>
+                                        <input type="number" id="zone-area" min="1" value="10" required>
+                                    </div>
+                                    <button type="submit" class="btn">Save Zone</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <div id="notification-toast" class="toast">
+                            <div class="toast-content">
+                                <span class="toast-close">&times;</span>
+                                <div class="toast-icon"></div>
+                                <div class="toast-message" id="toast-message"></div>
+                            </div>
+                        </div>
+                        
+                    
+                    <div class="status">
+                        <h3>System Status</h3>
+                        <p id="system-status">System is currently in automatic mode</p>
+                        <p id="last-watered">Last watered: --</p>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <canvas id="moisture-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Smart Irrigation</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Smart irrigation is an innovative smart irrigation system designed to optimize water usage for agriculture, gardens, and landscaping. Our system combines IoT sensors with advanced algorithms to deliver the right amount of water at the right time.</p>
+                    <p>Our mission is to make sustainable irrigation accessible to everyone, from small home gardens to large agricultural operations.</p>
+                </div>
+                <div class="about-image">
+                    <img src="moisture soil.webp" alt="Soil moisture sensor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><i class="fas fa-envelope"></i> info@smart.irrigations</p>
+                    <p><i class="fas fa-phone"></i> +917564938650</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Chandigarh,India </p>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="smart irrigation logo.webp" alt="AquaSmart Logo">
+                    <h3>Smart Irrigation</h3>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#dashboard">Dashboard</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <form id="newsletterForm">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Smart Irrigation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
